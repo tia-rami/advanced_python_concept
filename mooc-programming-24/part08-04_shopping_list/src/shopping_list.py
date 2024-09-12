@@ -19,3 +19,18 @@ class ShoppingList:
 # -------------------------
 # Write your solution here:
 # -------------------------
+def total_units(my_list: ShoppingList):
+    units = 0
+    for i in range(1, my_list.number_of_items() +1):
+        units = units + my_list.amount(i)
+
+    return units
+
+
+if __name__ == "__main__":
+    my_list = ShoppingList()
+    my_list.add("bananas", 10)
+    my_list.add("apples", 5)
+    my_list.add("pineapple", 1)
+
+    print(total_units(my_list))
