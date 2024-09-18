@@ -31,3 +31,66 @@ class WordGame():
         print(f"player 1: {self.wins1}")
         print(f"player 2: {self.wins2}")
 
+class LongestWord(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        if len(player1_word) > len(player2_word):
+            return 1
+        if len(player2_word) > len(player1_word):
+            return 2
+        pass
+
+class MostVowels(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        vowels = ['a', 'o', 'i', 'e', 'u', 'y']
+        vowel_player_one_count = 0
+        vowel_player_two_count = 0
+
+        for char in player1_word:
+            if char in vowels:
+                vowel_player_one_count += 1
+
+        for char in player2_word:
+            if char in vowels:
+                vowel_player_two_count += 1
+
+        if vowel_player_one_count > vowel_player_two_count:
+            return 1
+        if vowel_player_two_count > vowel_player_one_count:
+            return 2
+
+class RockPaperScissors(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        if player1_word not in ["rock","paper","scissors"]:
+            if player2_word not in ["rock","paper","scissors"]:
+                return
+            else:
+                return 2
+        elif player2_word not in ["rock","paper","scissors"]:
+            return 1
+
+        if player1_word == player2_word:
+            pass
+        elif player1_word == "rock":
+            if player2_word == "scissors":
+                return 1
+            elif player2_word == "paper":
+                return 2
+        elif player1_word == "scissors":
+            if player2_word == "paper":
+                return 1
+            elif player2_word == "rock":
+                return 2
+        elif player1_word == "paper":
+            if player2_word == "rock":
+                return 1
+            elif player2_word == "scissors":
+                return 2
